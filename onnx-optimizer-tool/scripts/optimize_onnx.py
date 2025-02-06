@@ -12,7 +12,7 @@ def optimize_onnx_model(input_model_path, output_model_path):
     model = onnx.load(input_model_path)
 
     # 使用する最適化手法のリスト
-    # passes = ["fuse_consecutive_transposes", "eliminate_deadend", "fuse_add_bias_into_conv", "eliminate_identity"]
+    passes = ["fuse_consecutive_transposes", "eliminate_deadend", "fuse_add_bias_into_conv", "eliminate_identity"]
 
     # 最適化
     optimized_model = onnxoptimizer.optimize(model)
