@@ -169,3 +169,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# 学習に使う画像データ
+archive/** 
+images/
+
+# 仮想環境
+.test_venv/

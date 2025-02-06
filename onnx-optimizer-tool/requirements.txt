@@ -1,0 +1,9 @@
+torch
+argparse
+cmake
+onnx
+onnxoptimizer
+onnxruntime
+numpy
+tensorflow
+tf2onnx
