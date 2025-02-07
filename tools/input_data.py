@@ -3,7 +3,8 @@ from PIL import Image
 import os
 import torch
 import glob
-
+import sys
+sys.path.append("../")
 
 # 画像の前処理
 transform = transforms.Compose(
@@ -31,4 +32,5 @@ def load_image(image_dir):
 
 if __name__ == "__main__":
     images = load_image(image_dir)
+    print(len(images))
     print(images[0].shape)

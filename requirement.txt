@@ -6,3 +6,4 @@ onnxruntime
 Pillow
 numpy
 scikit-learn
+netron
