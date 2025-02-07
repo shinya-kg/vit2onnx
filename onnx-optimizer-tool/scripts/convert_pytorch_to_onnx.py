@@ -25,7 +25,7 @@ def convert_pytorch_to_onnx(model_path, output_path, input_shape=None):
     # dummy_input を input_shape から作成
     if input_shape is None:
         input_shape = (1, 3, 224, 224)  # デフォルト形状
-    dummy_input = torch.randn(input_shape)
+    dummy_input = torch.rand(input_shape, dtype=torch.float32)
 
     torch.onnx.export(
         model,

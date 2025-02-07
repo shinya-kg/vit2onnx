@@ -173,6 +173,10 @@ cython_debug/
 # 学習に使う画像データ
 archive/
 
-
 # 仮想環境
 .test_venv/
+
+# モデル
+models/*.onnx
+models/*.python
+onnx-optimizer-tool/models
