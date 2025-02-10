@@ -2,9 +2,10 @@ import torch
 import torch.nn as nn
 import torch.onnx
 import argparse
-import sys
 import onnx
-
+import sys
+sys.path.append('../tools')
+from input_data import load_image
 
 def convert_pytorch_to_onnx(model_path, output_path, input_shape=None):
     """PytorchモデルをONNX形式へ変換"""
@@ -23,9 +24,13 @@ def convert_pytorch_to_onnx(model_path, output_path, input_shape=None):
     model.eval()
 
     # dummy_input を input_shape から作成
-    if input_shape is None:
-        input_shape = (1, 3, 224, 224)  # デフォルト形状
-    dummy_input = torch.rand(input_shape, dtype=torch.float32)
+    # if input_shape is None:
+    #     input_shape = (1, 3, 224, 224)  # デフォルト形状
+    # dummy_input = torch.rand(input_shape, dtype=torch.float32)
+    
+    # 実際の画像を指定してみる
+    image_dir = "../images"
+    dummy_input = load_image(image_dir)[0].unsqueeze(0)
 
     torch.onnx.export(
         model,

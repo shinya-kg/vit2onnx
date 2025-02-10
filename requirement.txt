@@ -1,9 +1,0 @@
-torch
-torchvision
-transformers
-onnx
-onnxruntime
-Pillow
-numpy
-scikit-learn
-netron
