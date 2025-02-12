@@ -4,7 +4,6 @@ import torchvision.models as models
 from torchvision.models.vision_transformer import ViT_B_16_Weights
 
 
-
 class ModelClass(nn.Module):
     def __init__(self):
         super(ModelClass, self).__init__()

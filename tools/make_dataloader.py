@@ -1,6 +1,6 @@
 def make_dataloader():
     """archive内にある画像データを取得し訓練、検証、テスト用のデータローダーを作成する関数
-    
+
     Returns:
         tuple: 訓練用、検証用、テスト用のDataLoaderオブジェクトのタプル。
             (train_loader, val_loader, test_loader)
@@ -16,8 +16,8 @@ def make_dataloader():
     from torch.utils.data import DataLoader, Dataset
 
     class ImageDataset(Dataset):
-        """画像のデータセットを作成
-        """
+        """画像のデータセットを作成"""
+
         def __init__(self, images, labels):
             super().__init__()
             self.images = images
@@ -28,7 +28,6 @@ def make_dataloader():
 
         def __getitem__(self, idx):
             return self.images[idx], self.labels[idx]
-
 
     # バッチに分割する関数
     def batch_process(data, batch_size):
@@ -42,7 +41,9 @@ def make_dataloader():
             [
                 transforms.Resize((224, 224)),
                 transforms.ToTensor(),
-                transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+                transforms.Normalize(
+                    mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
+                ),
             ]
         )
         image = transform(image)

@@ -12,7 +12,12 @@ def optimize_onnx_model(input_model_path, output_model_path):
     model = onnx.load(input_model_path)
 
     # 使用する最適化手法のリスト
-    passes = ["fuse_consecutive_transposes", "eliminate_deadend", "fuse_add_bias_into_conv", "eliminate_identity"]
+    passes = [
+        "fuse_consecutive_transposes",
+        "eliminate_deadend",
+        "fuse_add_bias_into_conv",
+        "eliminate_identity",
+    ]
 
     # 最適化
     optimized_model = onnxoptimizer.optimize(model)
@@ -67,7 +72,9 @@ if __name__ == "__main__":
     input_model_path = args.input
     optimized_model_path = args.output
     input_shape = (
-        tuple(map(int, args.input_shape.split(","))) if args.input_shape else None
+        tuple(map(int, args.input_shape.split(",")))
+        if args.input_shape
+        else (1, 3, 224, 224)
     )
 
     if args.framework == "pytorch":

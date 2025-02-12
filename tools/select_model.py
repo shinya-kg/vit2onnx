@@ -1,13 +1,19 @@
 import torch
 import torchvision.models as models
 import onnx
+from torchvision.models.vision_transformer import ViT_B_16_Weights
 import onnxruntime as ort
-
+import sys
+sys.path.append("./models")
+from model import ModelClass
 
 def load_vit(file_name):
-    model = models.vit_b_16()
-    model.heads.head = torch.nn.Linear(model.hidden_dim, 10)
-    model.load_state_dict(torch.load(f"./models/{file_name}", weights_only=False))
+    model_path = f"./models/{file_name}"
+    state_dict = torch.load(
+        model_path, map_location=torch.device("cpu"), weights_only=True
+    )
+    model = ModelClass()
+    model.load_state_dict(state_dict, strict=True)
     return model
 
 

@@ -180,3 +180,7 @@ archive/
 models/*.onnx
 models/*.python
 onnx-optimizer-tool/models
+
+model_validation/test.ipynb
+
+.DS_Store
