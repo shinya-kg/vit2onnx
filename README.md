@@ -4,6 +4,10 @@
 
 このプロジェクトは、10種類の動物の画像を学習させたVisionTransformerの画像分類モデルを`.onnx`モデルへ変換し精度の変化を確かめることを目的としています。  
 また、onnx-optimizer-tool内のメソッドを使用して`.onnx`ファイルに変換したり、最適化することができます。  さらに、作成したモデルを指定してimagesディレクトリ内の画像を推論させる事もできます。
+> [!NOTE]
+> models内の.pth,.onnxファイルはロードできないので、model_validation > learning_vit.ipynb内で学習させる必要があります。
+
+
 
 ## 機能
 
