@@ -178,7 +178,7 @@ archive/
 
 # モデル
 models/*.onnx
-models/*.python
+models/*.pth
 onnx-optimizer-tool/models
 
 model_validation/test.ipynb
