@@ -7,4 +7,6 @@ Pillow==11.1.0
 numpy==2.2.2
 scikit-learn==1.6.1
 netron==8.1.6
+tensorflow
+tf2onnx
 ipykernel
