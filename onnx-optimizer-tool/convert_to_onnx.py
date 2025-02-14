@@ -15,7 +15,7 @@ def detect_framework(model_path:str) -> Literal["pytorch","tensorflow"]:
         raise ValueError(f'Unsupported model format: {model_path}')
 
 
-def main()　-> None:
+def main() -> None:
     """コマンドライン引数を受け取り、モデルを ONNX 形式に変換する。
 
     使用可能な引数:

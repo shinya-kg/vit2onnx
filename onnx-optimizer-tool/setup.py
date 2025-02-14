@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name="onnx_optimizer_tool",
     version="0.1.0",
-    packages=find_packages(),
+    packages=find_packages(include=["scripts", "scripts.*"]),
     install_requires=[
         "onnx",
         "onnxruntime",
@@ -20,8 +20,6 @@ setup(
     },
     author="Shinya Koga",
     description="ONNX モデルの最適化と変換ツール",
-    # long_description=open("./workspace/README.md").read(),
-    # long_description_content_type="text/markdown",
     url="https://github.com/your-repo/onnx-optimizer-tool",
     classifiers=[
         "Programming Language :: Python :: 3",
