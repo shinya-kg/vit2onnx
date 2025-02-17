@@ -5,7 +5,7 @@ from scripts.convert_pytorch_to_onnx import convert_pytorch_to_onnx
 from scripts.convert_tf_to_onnx import convert_tf_to_onnx
 
 
-def detect_framework(model_path:str) -> Literal["pytorch","tensorflow"]:
+def detect_framework(model_path:str) :
     """ファイル拡張子からフレームワークを判別"""
     if model_path.endswith('.pth'):
         return "pytorch"
