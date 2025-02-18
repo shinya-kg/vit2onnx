@@ -1,4 +1,4 @@
-def make_dataloader():
+def _make_dataloader():
     """archive内にある画像データを取得し訓練、検証、テスト用のデータローダーを作成する関数
 
     Returns:
@@ -164,4 +164,4 @@ def make_dataloader():
 
 
 if __name__ == "__main__":
-    make_dataloader()
+    _make_dataloader()

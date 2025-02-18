@@ -28,7 +28,7 @@ def optimize_onnx_model(input_model_path, output_model_path):
 
 
 # Runtimeで推論時間を計測
-def benchmark_onnx_model(model_path, input_data):
+def benchmark_onnx_model(model_path, _input_data):
     # Runtimeセッションを作成
     session = ort.InferenceSession(model_path)
 
@@ -39,7 +39,7 @@ def benchmark_onnx_model(model_path, input_data):
     start_time = time.time()
 
     # 推論実行
-    output = session.run(None, {input_name: input_data})
+    output = session.run(None, {input_name: _input_data})
 
     # 推論のend
     end_time = time.time()
@@ -83,15 +83,15 @@ if __name__ == "__main__":
         optimize_onnx_model(input_model_path, optimized_model_path)
 
         # ダミーデータを使用して推論ベンチマーク
-        input_data = np.random.randn(*input_shape).astype(np.float32)
+        _input_data = np.random.randn(*input_shape).astype(np.float32)
 
         # 最適化前の推論
         print("最適化前の推論時間:")
-        _, time_before = benchmark_onnx_model(input_model_path, input_data)
+        _, time_before = benchmark_onnx_model(input_model_path, _input_data)
 
         # 最適化後の推論
         print("\n最適化後の推論時間:")
-        _, time_after = benchmark_onnx_model(optimized_model_path, input_data)
+        _, time_after = benchmark_onnx_model(optimized_model_path, _input_data)
 
         # 推論時間の比較
         print(f"\n推論時間の差: {time_before - time_after:.6f}秒")
@@ -102,15 +102,15 @@ if __name__ == "__main__":
         optimize_onnx_model(input_model_path, optimized_model_path)
 
         # ダミーデータを使用して推論ベンチマーク
-        input_data = np.random.rand(*input_shape).astype(np.float32)
+        _input_data = np.random.rand(*input_shape).astype(np.float32)
 
         # 最適化前の推論
         print("最適化前の推論時間:")
-        _, time_before = benchmark_onnx_model(input_model_path, input_data)
+        _, time_before = benchmark_onnx_model(input_model_path, _input_data)
 
         # 最適化後の推論
         print("\n最適化後の推論時間:")
-        _, time_after = benchmark_onnx_model(optimized_model_path, input_data)
+        _, time_after = benchmark_onnx_model(optimized_model_path, _input_data)
 
         # 推論時間の比較
         print(f"\n推論時間の差: {time_before - time_after:.6f}秒")

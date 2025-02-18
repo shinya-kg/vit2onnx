@@ -1,7 +1,7 @@
 import sys
 
 sys.path.append("/Users/kogashinya/work_space/practice/onnx_animal")
-from make_dataloader import make_dataloader
+from _make_dataloader import _make_dataloader
 import torch
 import time
 import argparse
@@ -9,8 +9,8 @@ import torchvision.models as models
 import onnx
 import onnxruntime as ort
 import numpy as np
-from input_data import load_image
-from select_model import load_res, load_vit, load_vit_onnx
+from _input_data import load_image
+from _select_model import load_res, load_vit, load_vit_onnx
 
 dic = {
     "dog": 0,
@@ -74,7 +74,7 @@ def main():
         ort_inputs = {"input": images_tensor.numpy()}
         start_time = time.time()
         output = ort_session.run(None, ort_inputs)[0]
-        end_time = time.time()    
+        end_time = time.time()
 
     # 推論時間の計測
     inference_time = end_time - start_time
@@ -88,6 +88,7 @@ def main():
 
     pred_list = [reversed_dic[p] for p in pred_list]
     print(f"予測結果：{pred_list}")
+
 
 if __name__ == "__main__":
     main()

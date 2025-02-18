@@ -82,7 +82,7 @@ python tools/inference.py --model vit --modelname vit_cls.pth
 model_validation > learn_vit.ipynbを参照
 
 **使用データ**：archive内の10種類の動物の画像データ（.jpeg）約24,000枚  
-　　　　　　tools > make_dataloader.pyを使用しデータローダーを作成  
+　　　　　　tools > _make_dataloader.pyを使用しデータローダーを作成  
 **使用モデル**：事前学習済みViT-B/16  
 　　　　　　出力層を10分類になるように調整し、出力層のみ学習させる（条件はnotebookに記載）
 
@@ -91,7 +91,7 @@ model_validation > learn_vit.ipynbを参照
 ### モデルを.onnx形式へ変換
 model_validation > validation_onnx.ipynbを参照
 
-**使用データ**：tools > make_dataloader.pyを使用しデータローダーを作成しtest_loaderのみで検証  
+**使用データ**：tools > _make_dataloader.pyを使用しデータローダーを作成しtest_loaderのみで検証  
 **使用モデル**：上記で学習させた.pthファイルをconvert_to_onnx.pyで.onnxファイルに変換したもの
 
 ~~→.onnxモデルのテストデータ(test_loader)での精度は**8.31%**~~

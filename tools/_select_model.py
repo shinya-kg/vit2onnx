@@ -4,7 +4,7 @@ import onnx
 from torchvision.models.vision_transformer import ViT_B_16_Weights
 import onnxruntime as ort
 import sys
-sys.path.append("./models")
+sys.path.append("../models")
 from model import ModelClass
 
 def load_vit(file_name: str) -> "ModelClass":
