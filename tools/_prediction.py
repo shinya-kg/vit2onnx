@@ -58,7 +58,7 @@ def predict_onnx(model):
     print('ONNXモデルの検証完了')
     
     # ONNXセッションを作成
-    ort_session = ort.InferenceSession(file_path)
+    ort_session = ort.InferenceSession(file_path, providers=["CPUExecutionProvider"])
     
     # 出力名を確認
     output_name = [output.name for output in ort_session.get_outputs()]

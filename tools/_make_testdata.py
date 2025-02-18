@@ -77,10 +77,10 @@ def _make_testdata():
     # 画像のファイルパスを取得
     images = []
     
-    # 各カテゴリからランダムに103枚ずつ取得
+    # 各カテゴリからランダムに16枚ずつ取得
     for i, _ in enumerate(image_files):
         images.extend(
-            random.sample(glob.glob(os.path.join(image_files[2], "*jpeg")), 103)
+            random.sample(glob.glob(os.path.join(image_files[2], "*jpeg")), 16)
         )
 
     # ラベルとともにデータを格納
