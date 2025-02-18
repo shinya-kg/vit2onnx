@@ -181,9 +181,8 @@ models/*.onnx
 models/*.pth
 onnx-optimizer-tool/models
 
-model_validation/test.ipynb
-
 .DS_Store
 .test_env
 
 model_validation(notebook)/test.ipynb
+model_validation(notebook)/make_testdata.ipynb
