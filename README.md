@@ -63,6 +63,34 @@ python scripts/optimize_onnx.py --framework tensorflow --input models/<your/mode
 
 ```
 
+### モデルの量子化
+onnx-optimizer-tool内で次のコマンドを実行してください。  
+変換元のファイル名と変換後のファイル名を指定してください。
+```
+python scripts/quantizer.py
+```
+
+> [!NOTE]
+> 現時点で8bitの量子化しか実装していません。他のbit幅はおいおい追加する予定です。
+>
+
+### モデルの精度と推論速度の比較
+models内のモデルを使って、精度と推論速度を比較できます。（量子化前後、ONNX形式変換前後）  
+tools内で次のコマンドを実行してください
+```
+python compare_models.py 
+```
+**出力イメージ**  
+| モデル | 精度 | 推論時間[秒] |
+|:--|--:|--:|
+| vit_cls.onnx | 97.500 | 4.152 |
+| quant8_vit_cls.onnx | 78.125 | 3.267 |
+
+(参考)  
+推論時間はバッチサイズ32のデータを推論させたときの平均時間
+
+
+
 ### 任意の画像を推論
 images内に配置された任意の.jpeg画像を指定したモデルで推論します。  
 tools内から以下のコードを実行してください。(.pth,.onnxファイルのみ実装)  
