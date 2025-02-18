@@ -4,7 +4,8 @@ import onnx
 from torchvision.models.vision_transformer import ViT_B_16_Weights
 import onnxruntime as ort
 import sys
-sys.path.append("../models")
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../models")))
 from model import ModelClass
 
 def load_vit(file_name: str) -> "ModelClass":
@@ -17,7 +18,7 @@ def load_vit(file_name: str) -> "ModelClass":
         ModelClass: 読み込んだモデルのインスタンス
 
     """
-    model_path = f"./models/{file_name}"
+    model_path = f"../models/{file_name}"
     state_dict = torch.load(
         model_path, map_location=torch.device("cpu"), weights_only=True
     )
@@ -53,7 +54,7 @@ def load_vit_onnx(file_name):
         file_path (str): 指定したモデルの相対パス
         
     """
-    dir_path = "./models/"
+    dir_path = "../models/"
     model = onnx.load(dir_path + file_name)
     file_path = dir_path + file_name
     return model, file_path

@@ -39,7 +39,7 @@ def main():
     parser.add_argument("--modelname", type=str, required=True, help="Model name")
     args = parser.parse_args()
 
-    image_dir = "./images"
+    image_dir = "../images"
     device = torch.device("cpu")
     images = load_image(image_dir)
 

@@ -65,7 +65,7 @@ python scripts/optimize_onnx.py --framework tensorflow --input models/<your/mode
 
 ### 任意の画像を推論
 images内に配置された任意の.jpeg画像を指定したモデルで推論します。  
-ルートディレクトリから以下のコードを実行してください。(.pth,.onnxファイルのみ実装)  
+tools内から以下のコードを実行してください。(.pth,.onnxファイルのみ実装)  
 ルートディレクトリ配下のmodelsフォルダ内のモデルについて利用できます。  
 デフォルトでは鶏の画像が8枚入っています。種類に制限はありますが、任意の種類、枚数を推論させることができます。
 > [!WARNING]
@@ -73,8 +73,8 @@ images内に配置された任意の.jpeg画像を指定したモデルで推論
 
 ```
 # 使用例
-python tools/inference.py --model vit_onnx --modelname vit_cls.onnx
-python tools/inference.py --model vit --modelname vit_cls.pth
+python inference.py --model vit_onnx --modelname vit_cls.onnx
+python inference.py --model vit --modelname vit_cls.pth
 ```
 
 ## 学習からモデル変換までの流れ

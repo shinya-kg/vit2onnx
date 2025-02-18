@@ -4,13 +4,16 @@ import onnx
 import onnxruntime as ort
 import time
 from _make_testdata import _make_testdata
+from _select_model import load_vit, load_vit_onnx
 
 import numpy as np
 # データの準備
 test_loader = _make_testdata()
 
 # .pthファイルで推論するとき
-def predict_pth(model):
+def predict_pth(model_name):
+    model = load_vit(model_name)
+    
     # 検証モード
     model.eval()
     
@@ -24,9 +27,9 @@ def predict_pth(model):
         for images, labels in test_loader:
             
             # 時間の計測
-            start_time = time.time
+            start_time = time.time()
             outputs = model(images)
-            end_time = time.time
+            end_time = time.time()
             batch_time = end_time - start_time
             inference_time.append(batch_time)
             
@@ -47,7 +50,8 @@ def predict_pth(model):
             
 
 # onnxファイルでの推論
-def predict_onnx(model, file_path):
+def predict_onnx(model):
+    model, file_path = load_vit_onnx(model)
     
     # モデルの検証
     onnx.checker.check_model(model)
@@ -69,9 +73,9 @@ def predict_onnx(model, file_path):
         ort_inputs = {ort_session.get_inputs()[0].name: images.numpy()}
         
         # 推論時間の計測
-        start_time = time.time
+        start_time = time.time()
         ort_outputs = ort_session.run(output_name, ort_inputs)
-        end_time = time.time
+        end_time = time.time()
         batch_time = end_time - start_time
         inference_time.append(batch_time)
         predicted = np.argmax(ort_outputs[0], axis = 1)
