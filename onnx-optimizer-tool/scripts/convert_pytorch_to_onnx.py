@@ -40,6 +40,7 @@ def convert_pytorch_to_onnx(model_path, output_path, input_shape=None):
         output_path,
         input_names=["input"],
         output_names=["output"],
+        opset_version=18,
         dynamic_axes={"input": {0: "batch_size"}, "output": {0: "batch_size"}},
     )
     print(f"✅ PyTorch モデルを ONNX に変換しました: {output_path}")

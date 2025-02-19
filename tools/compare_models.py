@@ -2,13 +2,35 @@ import re
 from _prediction import predict_pth, predict_onnx
 
 # モデルのクラスの定義
-class model_info:
+class Model_Info:
     def __init__(self, name):
         self.name = name
         self.type = None
         self.accuracy = None
         self.ave_time = None
-
+        
+def process_model(model_name):
+    model_info = Model_Info(model_name)
+    if model_info.name.endswith('onnx'):
+        model_info.type = "onnx"
+        model_info.accuracy, model_info.ave_time = predict_onnx(model_info.name)
+    else:
+        model_info.type = "pth"
+        model_info.accuracy, model_info.ave_time = predict_pth(model_info.name)
+    
+    return model_info
+    
+def _print_result(result):
+    print("-" * 40)
+    print("モデル比較")
+    print("-" * 40)
+    print(f"{'モデル':<15} {'精度':<10} {'推論時間[秒]':<15}")
+    print("-" * 40)
+    
+    for model, results in result.items():
+        print(f"{model:<15} {results['accuracy']:<10.3f} {results['ave_time']:<15.3f}")
+    
+    print("-" * 40)
 
 def compare(models:list[str]):
     """入力された2つのモデルの精度と推論速度を測定し比較する関数
@@ -16,18 +38,20 @@ def compare(models:list[str]):
     Args:
         models list[str]：入力されたモデルのファイル名のリスト
     """
-    
+    print('モデルが入力されました')
+    result = {}
     for model in models:
-        m = model_info(model)
-        if m.name.endswith('onnx'):
-            m.type = "onnx"
-            m.accuracy, m.ave_time = predict_onnx(m.name)
-        else:
-            m.type = "pth"
-            m.accuracy, m.ave_time = predict_pth(m.name)
-            
-        print(f'選んだモデル名{m.name}')
-        print(f'正解率：{m.accuracy} 推論時間：{m.ave_time}')
+        model_info = process_model(model)
+
+        print(f'{model_info.name}の計算が完了しました。')
+        result[model_info.name] = {
+            "type": model_info.type,
+            "accuracy": model_info.accuracy,
+            "ave_time": model_info.ave_time
+        }
+        print("-" * 40)
+    return result
+    
 
     
 
@@ -49,5 +73,7 @@ if __name__ == "__main__":
         elif continue_input not in ["y", "n"]:
             print('yまたはnを入力してください')
             break
+        print("-" * 40)
         
-    compare(models)
+    result = compare(models)
+    print(_print_result(result))
