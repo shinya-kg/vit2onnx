@@ -14,8 +14,7 @@ def compare(models:list[str]):
     """入力された2つのモデルの精度と推論速度を測定し比較する関数
 
     Args:
-        first_model (str): モデル名
-        second_model (str): モデル名
+        models list[str]：入力されたモデルのファイル名のリスト
     """
     
     for model in models:
