@@ -12,6 +12,8 @@ test_loader = _make_testdata()
 
 # .pthファイルで推論するとき
 def predict_pth(model_name):
+    
+    # インスタンス化したモデルをロード
     model = load_vit(model_name)
     
     # 検証モード
@@ -51,6 +53,8 @@ def predict_pth(model_name):
 
 # onnxファイルでの推論
 def predict_onnx(model):
+    
+    # インスタンス化したモデルをロード
     model, file_path = load_vit_onnx(model)
     
     # モデルの検証
