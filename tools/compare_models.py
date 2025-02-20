@@ -57,6 +57,8 @@ def compare(models:list[str]):
 
 if __name__ == "__main__":
     models = []
+    
+    # モデルの入力
     flag = True
     while flag:
         file_name = input('モデル名を入力してください：')
@@ -74,6 +76,14 @@ if __name__ == "__main__":
             print('yまたはnを入力してください')
             break
         print("-" * 40)
-        
+    
+    # modelsが空の場合
+    if models == []:
+        print('モデルが入力されていません')
+        exit()
+    
+    # モデルの比較
     result = compare(models)
+    
+    # 結果の表示
     print(_print_result(result))

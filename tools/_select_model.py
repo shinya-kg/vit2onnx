@@ -55,6 +55,10 @@ def load_vit_onnx(file_name):
         
     """
     dir_path = "../models/"
-    model = onnx.load(dir_path + file_name)
     file_path = dir_path + file_name
+    
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f'{file_name}が見つかりません')
+    
+    model = onnx.load(dir_path + file_name)
     return model, file_path
